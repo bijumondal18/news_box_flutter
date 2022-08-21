@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_box/Commons/app_colors.dart';
 import 'package:news_box/Commons/app_sizes.dart';
 import 'package:news_box/Features/Home/Bloc/news_bloc.dart';
+import 'package:news_box/Widgets/custom_loader.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -93,14 +94,10 @@ class _HomeScreenState extends State<HomeScreen>
                 listener: (context, state) {},
                 builder: (context, state) {
                   if (state is NewsStateInitial) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const CustomLoader();
                   }
                   if (state is NewsStateLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const CustomLoader();
                   }
                   if (state is NewsStateError) {
                     return Center(
