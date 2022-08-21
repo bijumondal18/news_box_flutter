@@ -10,7 +10,7 @@ class ApiProvider {
 
   Future<NewsModel> fetchNewsData() async {
     try {
-      Response response = await dio.get(Constants.baseUrl);
+      Response response = await dio.get(Constants.baseUrl + Constants.todayTopHeadlinesUrl);
       log('-------Weather News Data : $response');
       return response.statusCode == 200
           ? NewsModel.fromJson(response.data)

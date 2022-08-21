@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_box/Commons/app_colors.dart';
 import 'package:news_box/Commons/app_sizes.dart';
 import 'package:news_box/Features/Home/Bloc/news_bloc.dart';
+import 'package:news_box/Utils/app_utils.dart';
 import 'package:news_box/Widgets/custom_loader.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,8 +20,8 @@ class _HomeScreenState extends State<HomeScreen>
   int selectedIndex = 0;
 
   final TextEditingController searchController = TextEditingController();
-
   final NewsBloc newsBloc = NewsBloc();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
@@ -105,102 +106,113 @@ class _HomeScreenState extends State<HomeScreen>
                     );
                   }
                   if (state is NewsStateLoaded) {
-                    return ListView.separated(
-                      itemCount: state.newsModel.articles!.length,
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding:
-                              const EdgeInsets.all(AppSizes.kDefaultPadding),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      state.newsModel.articles![index].title
-                                          .toString(),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                      width: AppSizes.kDefaultPadding),
-                                  const Icon(EvaIcons.bookmarkOutline)
-                                ],
-                              ),
-                              const SizedBox(
-                                height: AppSizes.dimen8,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 160,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        AppSizes.cardCornerRadius),
-                                    image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(state
-                                          .newsModel.articles![index].urlToImage
-                                          .toString()),
-                                    )),
-                              ),
-                              const SizedBox(
-                                height: AppSizes.dimen8,
-                              ),
-                              Text(
-                                state.newsModel.articles![index].description
-                                    .toString(),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodyText2,
-                              ),
-                              const SizedBox(
-                                height: AppSizes.kDefaultPadding,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      '${state.newsModel.articles![index].source!.name} \u2022 ${state.newsModel.articles![index].publishedAt}',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.whatsapp,
-                                        color: AppColors.green,
-                                      ),
-                                      SizedBox(width: AppSizes.dimen8),
-                                      Icon(
-                                        Icons.more_vert_rounded,
-                                        color: AppColors.darkGrey,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        );
+                    return RefreshIndicator(
+                      color: AppColors.primary,
+                      key: refreshKey,
+                      onRefresh: () async {
+                        await Future.delayed(
+                            const Duration(milliseconds: 2000));
+                        newsBloc.add(GetNewsDataEvent());
                       },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const Divider();
-                      },
+                      child: ListView.separated(
+                        itemCount: state.newsModel.articles!.length,
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.all(AppSizes.kDefaultPadding),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        state.newsModel.articles![index].title
+                                            .toString(),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                        width: AppSizes.kDefaultPadding),
+                                    const Icon(EvaIcons.bookmarkOutline)
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: AppSizes.dimen8,
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 160,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          AppSizes.cardCornerRadius),
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(state.newsModel
+                                            .articles![index].urlToImage
+                                            .toString()),
+                                      )),
+                                ),
+                                const SizedBox(
+                                  height: AppSizes.dimen8,
+                                ),
+                                Text(
+                                  state.newsModel.articles![index].description
+                                      .toString(),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                                const SizedBox(
+                                  height: AppSizes.kDefaultPadding,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        '${state.newsModel.articles![index].source!.name} \u2022 ${AppUtils.getTimeFromDateString('${state.newsModel.articles![index].publishedAt}')}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      ),
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.whatsapp,
+                                          color: AppColors.green,
+                                        ),
+                                        SizedBox(width: AppSizes.dimen8),
+                                        Icon(
+                                          Icons.more_vert_rounded,
+                                          color: AppColors.darkGrey,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const Divider();
+                        },
+                      ),
                     );
                   }
                   return Container();
