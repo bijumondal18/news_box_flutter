@@ -61,11 +61,11 @@ class AppTheme {
           headline4: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.headline4,
-              fontWeight: FontWeight.w700),
+              fontWeight: FontWeight.w500),
           headline5: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.headline5,
-              fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w500),
           headline6: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.headline6,

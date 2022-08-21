@@ -10,15 +10,15 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		VmsDaKK7V2+p8Q4svtfrb39rYsg=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
-		vKJkVIcw+LGHFnKJGwrQwCREv68=
+		JHE/yY6pniohdl6C9IfypUPdNIc=
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		iPexya5T+ZHvRVqGidKhSs+Iegc=
+		EyvvhGvbJwrxwAona/829piPsiY=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -30,11 +30,15 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		0vXDagXY0Qyu+9eoo1GpdIuqU1s=
+		joQAAcR+VTNwIbuSrx/gzazjcbM=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
+		</data>
+		<key>flutter_assets/packages/eva_icons_flutter/lib/fonts/Eva-Icons.ttf</key>
+		<data>
+		FPL9zxeSLmrcfOoKolGFG94grB0=
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
@@ -47,21 +51,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			70qPHDKoUa1s/G4bJVBs18jHTm9NlXGg6WQ6uKbw1zA=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zX4DZFvESy3Ue3y2JvUcTsv1Whl6t3JBYotHrBZfviE=
+			uY0mjPZWaXOWmMWKyHKOKCGfZCWj4995cAIbS/SyVBk=
 			</data>
 		</dict>
 		<key>flutter_assets/NOTICES.Z</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q06/MabRYawEK7oGqvTt2TbKAxsf6v10ZZw/Hk1YvVA=
+			F4RBDpM1BVhIuPMnJU/t49Sj66/D8JS57VcNLEiAXqg=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -82,7 +86,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			K3+hALO103zZCWPlIW3GTcyKTfAGNOBiMvDIR4TcH4Y=
+			4qlIIYnexjYWjixTOgVH1YFqWFl00/uLE22hINlQY3I=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -90,6 +94,13 @@
 			<key>hash2</key>
 			<data>
 			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/eva_icons_flutter/lib/fonts/Eva-Icons.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VdFz4DV4poEJMCe2xGZs1Sh2v7qdFAp3qChx+wF4vkA=
 			</data>
 		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>

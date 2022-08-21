@@ -14,19 +14,18 @@ class CustomTextField extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: AppSizes.textFieldHeight,
       decoration: BoxDecoration(
-        color: AppColors.shimmer,
-        border: Border.all(width: 1, color: AppColors.lightGrey),
-        borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius)
-      ),
+          color: AppColors.shimmer,
+          border: Border.all(width: 1, color: AppColors.lightGrey),
+          borderRadius: BorderRadius.circular(AppSizes.cardCornerRadius)),
       child: TextFormField(
         //autofocus: true,
         //onChanged: (value) => BlocProvider.of<SearchedLocationBloc>(context).add(GetSearchedLocationEvent(controller.text.trim().toLowerCase())),
         controller: controller,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
             hintText: 'Search news here',
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 20),
-            border: UnderlineInputBorder(borderSide: BorderSide.none)),
+            hintStyle: Theme.of(context).textTheme.bodyText2,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+            border: const UnderlineInputBorder(borderSide: BorderSide.none)),
       ),
     );
   }
