@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_box/Commons/app_colors.dart';
 import 'package:news_box/Commons/app_sizes.dart';
 import 'package:news_box/Widgets/custom_card.dart';
+import 'package:news_box/Widgets/custom_text_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   int selectedIndex = 0;
+
+  final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -40,13 +43,14 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         leading: IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.menu,
               size: 24,
             )),
-        title: const Text('নিউজ বক্স'),
+        title: const Text('News Box'),
         actions: [
           IconButton(
               onPressed: () {},
@@ -61,31 +65,10 @@ class _HomeScreenState extends State<HomeScreen>
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search,
-                        size: 24,
-                      )),
-                  Row(
-                    children: const [
-                      Text('21.08.2022'),
-                      SizedBox(width: AppSizes.dimen4),
-                      Icon(
-                        Icons.calendar_month_outlined,
-                        size: 18,
-                        color: AppColors.darkGrey,
-                      )
-                    ],
-                  )
-                ],
-              ),
+              CustomTextField(controller: searchController),
               TabBar(
                 indicatorSize: TabBarIndicatorSize.tab,
-                labelColor: AppColors.blue,
+                labelColor: AppColors.primary,
                 labelStyle: const TextStyle(
                     fontSize: AppSizes.bodyText1, fontWeight: FontWeight.w700),
                 unselectedLabelStyle: const TextStyle(
