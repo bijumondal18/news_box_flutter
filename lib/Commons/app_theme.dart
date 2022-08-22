@@ -65,11 +65,11 @@ class AppTheme {
           headline5: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.headline5,
-              fontWeight: FontWeight.w500),
+              fontWeight: FontWeight.w600),
           headline6: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.headline6,
-              fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w500),
           bodyText1: TextStyle(
               color: AppColors.black,
               fontSize: AppSizes.bodyText1,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_box/Commons/app_theme.dart';
+import 'package:news_box/Features/ChooseLanguage/Presentation/choose_language_screen.dart';
 import 'package:news_box/Features/Home/Bloc/news_bloc.dart';
 import 'package:news_box/Features/Home/Presentation/home_screen.dart';
 import 'package:news_box/Features/Home/Repository/news_repository.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Daily News',
       theme: AppTheme.lightTheme,
-      home: const HomeScreen(),
+      home: const ChooseLanguageScreen(),
     );
   }
 }

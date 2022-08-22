@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_box/Commons/app_colors.dart';
 import 'package:news_box/Commons/app_sizes.dart';
+import 'package:news_box/Features/Details/Presentation/details_screen.dart';
 import 'package:news_box/Features/Home/Bloc/news_bloc.dart';
 import 'package:news_box/Utils/app_utils.dart';
 import 'package:news_box/Widgets/custom_loader.dart';
+import 'package:news_box/Widgets/news_card.dart';
+import 'package:news_box/Widgets/news_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -120,97 +123,58 @@ class _HomeScreenState extends State<HomeScreen>
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding:
-                                const EdgeInsets.all(AppSizes.kDefaultPadding),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        state.newsModel.articles![index].title
-                                            .toString(),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                        width: AppSizes.kDefaultPadding),
-                                    const Icon(EvaIcons.bookmarkOutline)
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: AppSizes.dimen8,
-                                ),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 160,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          AppSizes.cardCornerRadius),
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(state.newsModel
-                                            .articles![index].urlToImage
-                                            .toString()),
-                                      )),
-                                ),
-                                const SizedBox(
-                                  height: AppSizes.dimen8,
-                                ),
-                                Text(
-                                  state.newsModel.articles![index].description
+                          return index == 0
+                              ? NewsContainer(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsScreen(article: state.newsModel.articles![index])));
+                                  },
+                                  title: state.newsModel.articles![index].title
                                       .toString(),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                const SizedBox(
-                                  height: AppSizes.kDefaultPadding,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '${state.newsModel.articles![index].source!.name} \u2022 ${AppUtils.getTimeFromDateString('${state.newsModel.articles![index].publishedAt}')}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2,
-                                      ),
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(
-                                          Icons.whatsapp,
-                                          color: AppColors.green,
-                                        ),
-                                        SizedBox(width: AppSizes.dimen8),
-                                        Icon(
-                                          Icons.more_vert_rounded,
-                                          color: AppColors.darkGrey,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                  desc: state
+                                      .newsModel.articles![index].description
+                                      .toString(),
+                                  image: state
+                                      .newsModel.articles![index].urlToImage
+                                      .toString(),
+                                  author: state
+                                      .newsModel.articles![index].source!.name
+                                      .toString(),
+                                  time: state
+                                      .newsModel.articles![index].publishedAt
+                                      .toString(),
                                 )
-                              ],
-                            ),
-                          );
+                              : NewsCard(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailsScreen(article: state.newsModel.articles![index])));
+                                  },
+                                  title: state.newsModel.articles![index].title
+                                      .toString(),
+                                  desc: state
+                                      .newsModel.articles![index].description
+                                      .toString(),
+                                  image: state
+                                      .newsModel.articles![index].urlToImage
+                                      .toString(),
+                                  author: state
+                                      .newsModel.articles![index].source!.name
+                                      .toString(),
+                                  time: state
+                                      .newsModel.articles![index].publishedAt
+                                      .toString(),
+                                );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return const Divider();
+                          return const Divider(
+                            height: 0,
+                          );
                         },
                       ),
                     );
