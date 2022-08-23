@@ -29,10 +29,21 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
     'Nepali',
   ];
 
+  bool isSelected = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.kDefaultPadding),
@@ -70,22 +81,30 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                             mainAxisSpacing: 16,
                             mainAxisExtent: 50),
                     itemBuilder: (context, index) {
-                      return Container(
-                          height: 100,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.kDefaultPadding,
-                              vertical: AppSizes.dimen8),
-                          decoration: BoxDecoration(
-                              color: AppColors.shimmer,
-                              border: Border.all(
-                                  width: 0.5, color: AppColors.lightGrey),
-                              borderRadius:
-                                  BorderRadius.circular(AppSizes.dimen4)),
-                          child: Center(
-                              child: Text(
-                            languageList[index],
-                            style: Theme.of(context).textTheme.bodyText1,
-                          )));
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isSelected = true;
+                          });
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.kDefaultPadding,
+                                vertical: AppSizes.dimen8),
+                            decoration: BoxDecoration(
+                                color: isSelected
+                                    ? AppColors.primary
+                                    : AppColors.shimmer,
+                                border: Border.all(
+                                    width: 0.5, color: AppColors.lightGrey),
+                                borderRadius:
+                                    BorderRadius.circular(AppSizes.dimen4)),
+                            child: Center(
+                                child: Text(
+                              languageList[index],
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ))),
+                      );
                     }),
               ),
               Expanded(
@@ -98,7 +117,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
+                              builder: (context) => const HomeScreen()));
                     },
                     child: Text(
                       'Confirm',

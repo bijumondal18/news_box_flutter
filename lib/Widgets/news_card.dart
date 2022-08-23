@@ -36,7 +36,7 @@ class NewsCard extends StatelessWidget {
               flex: 3,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 130,
+                height: 100,
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.circular(AppSizes.cardCornerRadius),
@@ -52,6 +52,7 @@ class NewsCard extends StatelessWidget {
             Expanded(
               flex: 6,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -61,7 +62,7 @@ class NewsCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           title,
-                          maxLines: 2,
+                          maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.headline6,
                         ),
@@ -70,15 +71,15 @@ class NewsCard extends StatelessWidget {
                       const Icon(EvaIcons.bookmarkOutline)
                     ],
                   ),
-                  const SizedBox(
-                    height: AppSizes.dimen8,
-                  ),
-                  Text(
-                    desc,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
+                  // const SizedBox(
+                  //   height: AppSizes.dimen8,
+                  // ),
+                  // Text(
+                  //   desc,
+                  //   maxLines: 2,
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: Theme.of(context).textTheme.bodyText2,
+                  // ),
                   const SizedBox(
                     height: AppSizes.kDefaultPadding,
                   ),

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Daily News',
       theme: AppTheme.lightTheme,
-      home: const ChooseLanguageScreen(),
+      home: const HomeScreen(),
     );
   }
 }
